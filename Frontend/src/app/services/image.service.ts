@@ -10,10 +10,14 @@ export class ImageService {
 
   constructor(private http: HttpClient) { }
 
-  public generateCloud(text: string): Observable<any> {
-    return this.http.post(environment.basehref + "/cloud", {text: text});
+  public decodeImage(image){
+    return 'data:image/jpg;base64,' + image; 
   }
-  public generateMask(image: any): Observable<any> {
-    return this.http.post(environment.basehref + "/mask", {});
+
+  public generateCloud(text: string): Observable<any> {
+    return this.http.post(environment.basehref + "/cloud", { text: text });
+  }
+  public generateMask(text: string, image: any): Observable<any> {
+    return this.http.post(environment.basehref + "/mask", { text: text, image: image });
   }
 }

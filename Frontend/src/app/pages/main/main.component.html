@@ -4,4 +4,5 @@
     <div>
         <button mat-raised-button (click)="createCloud()">Create cloud</button>
     </div>
+    <img *ngIf="cloudImage"[src]=cloudImage [attr.width]="width" [attr.height]="height">
 </div>

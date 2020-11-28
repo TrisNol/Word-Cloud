@@ -8,6 +8,9 @@ import { ImageService } from 'src/app/services/image.service';
 })
 export class MainComponent implements OnInit {
   text: string = "";
+  cloudImage: any;
+  width: number;
+  height: number;
   constructor(private imageService: ImageService) { }
 
   ngOnInit(): void {
@@ -19,7 +22,12 @@ export class MainComponent implements OnInit {
   }
 
   createCloud() {
-    this.imageService.generateCloud(this.text).subscribe(res => console.log(res));
+    this.imageService.generateCloud(this.text).subscribe(res => {
+      console.log(res); 
+      this.cloudImage = this.imageService.decodeImage(res.cloud);
+      this.width = res.width;
+      this.height = res.height;
+    });
     console.log('cloud')
   }
 

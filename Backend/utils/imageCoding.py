@@ -1,12 +1,13 @@
 import base64
-from PIL import Image
-import io
+import cv2
 import numpy as np
 
 def decodeImageToArray(image):
-    image = base64.decodebytes(image)
-    image = Image.open(io.BytesIO(image))
-    return np.array(image)
+    im_bytes = base64.b64decode(image)
+    im_arr = np.frombuffer(im_bytes, dtype=np.uint8)
+    frame = cv2.imdecode(im_arr, flags=cv2.IMREAD_COLOR)
+    return frame
 
 def encodeImageToBase64(image):
-    return base64.b64encode(image)
+    (flag, encodedImage) = cv2.imencode(".jpg", image)
+    return base64.b64encode(encodedImage).decode('utf-8')
