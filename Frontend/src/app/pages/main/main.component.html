@@ -1,0 +1,7 @@
+<div class="mainDiv">
+    <app-drag-and-drop (textRead)="setText($event)"></app-drag-and-drop>
+    <textarea [(ngModel)]="text"></textarea>
+    <div>
+        <button mat-raised-button (click)="createCloud()">Create cloud</button>
+    </div>
+</div>
