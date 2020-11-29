@@ -36,6 +36,5 @@ def generate_mask(text, mask):
     wordcloud = WordCloud(stopwords=stopwords, mask=mask, background_color="white", mode="RGBA", max_words=750).generate(text)
     plt.imshow(wordcloud, interpolation="bilinear")
     plt.axis("off")
-    plt.savefig("cloud_with_mask.png", format="png", bbox_inches='tight')
 
     return encodeFig(fig)
