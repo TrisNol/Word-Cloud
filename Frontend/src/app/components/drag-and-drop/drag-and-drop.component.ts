@@ -7,13 +7,19 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class DragAndDropComponent implements OnInit {
   files: any[] = [];
-  reader = new FileReader();
+  textReader = new FileReader();
+  imageReader = new FileReader();
 
   @Output() textRead: EventEmitter<string> = new EventEmitter();
+  @Output() imageRead: EventEmitter<any> = new EventEmitter();
   constructor() {
-    this.reader.onload = () => {
-      let text = this.reader.result;
+    this.textReader.onload = () => {
+      let text = this.textReader.result;
       this.textRead.emit(String(text));
+    };
+    this.imageReader.onload = () => {
+      let image = this.imageReader.result;
+      this.imageRead.emit(image);
     };
   }
 
@@ -47,13 +53,24 @@ export class DragAndDropComponent implements OnInit {
   onFileDropped($event) {
     for (const item of $event) {
       this.files.push(item);
-      this.reader.readAsText(item);
+      if(item.name.endsWith('.txt')){
+        this.textReader.readAsText(item);
+      }
+      else if(item.name.endsWith('.png') || item.name.endsWith('.jpg')){
+        this.imageReader.readAsDataURL(item);
+      }
     }
   }
   fileBrowseHandler(files: FileList) {
     for (let i = 0; i < files.length; i++) {
-      this.files.push(files.item(i));
-      this.reader.readAsText(files.item(i));
+      let file = files.item(i);
+      this.files.push(file);
+      if(file.name.endsWith('.txt')){
+        this.textReader.readAsText(files.item(i));
+      }
+      else if(file.name.endsWith('.png') || file.name.endsWith('.jpg')){
+        this.imageReader.readAsDataURL(file);
+      }
     }
   }
 }

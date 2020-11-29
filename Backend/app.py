@@ -23,8 +23,12 @@ def cloud():
 @app.route('/mask', methods=['POST'])
 @cross_origin()
 def mask():
-    data = request.data
-    return {'message':'Mask'}
+    data = request.json
+    text = data['text']
+    mask = decodeImageToArray(data['mask'].split(',')[1])
+    (cloud, width, height) = generate_mask(text, mask)
+    cloud = encodeImageToBase64(cloud)
+    return {'cloud': cloud, 'width': width, 'height':height}
 
 if __name__ == "__main__":
     app.run(debug=True, port=3000)

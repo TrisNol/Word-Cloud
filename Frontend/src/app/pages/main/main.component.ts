@@ -9,6 +9,7 @@ import { ImageService } from 'src/app/services/image.service';
 export class MainComponent implements OnInit {
   text: string = "";
   cloudImage: any;
+  mask: any;
   width: number;
   height: number;
   constructor(private imageService: ImageService) { }
@@ -17,18 +18,25 @@ export class MainComponent implements OnInit {
   }
 
   setText(text: string) {
-    console.log(text);
     this.text = text;
+  }
+  setImage(image: any) {
+    this.mask = image;
   }
 
   createCloud() {
     this.imageService.generateCloud(this.text).subscribe(res => {
-      console.log(res); 
       this.cloudImage = this.imageService.decodeImage(res.cloud);
       this.width = res.width;
       this.height = res.height;
     });
-    console.log('cloud')
+  }
+  createMask() {
+    this.imageService.generateMask(this.text, this.mask).subscribe(res => {
+      this.cloudImage = this.imageService.decodeImage(res.cloud);
+      this.width = res.width;
+      this.height = res.height;
+    });
   }
 
 }

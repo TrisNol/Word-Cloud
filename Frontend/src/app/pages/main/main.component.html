@@ -1,8 +1,10 @@
 <div class="mainDiv">
-    <app-drag-and-drop (textRead)="setText($event)"></app-drag-and-drop>
+    <app-drag-and-drop (textRead)="setText($event)" (imageRead)="setImage($event)"></app-drag-and-drop>
     <textarea [(ngModel)]="text"></textarea>
+    <img [src]=mask [attr.width]="'450'" [attr.height]="'300'" alt="mask">
     <div>
         <button mat-raised-button (click)="createCloud()">Create cloud</button>
+        <button mat-raised-button (click)="createMask()">Create mask</button>
     </div>
-    <img *ngIf="cloudImage"[src]=cloudImage [attr.width]="width" [attr.height]="height">
+    <img *ngIf="cloudImage" [src]=cloudImage [attr.width]="width" [attr.height]="height">
 </div>

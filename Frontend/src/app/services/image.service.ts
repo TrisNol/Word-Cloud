@@ -17,7 +17,7 @@ export class ImageService {
   public generateCloud(text: string): Observable<any> {
     return this.http.post(environment.basehref + "/cloud", { text: text });
   }
-  public generateMask(text: string, image: any): Observable<any> {
-    return this.http.post(environment.basehref + "/mask", { text: text, image: image });
+  public generateMask(text: string, mask: any): Observable<any> {
+    return this.http.post(environment.basehref + "/mask", { text: text, mask: mask });
   }
 }
