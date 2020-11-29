@@ -1,6 +1,3 @@
-import pathlib
-import numpy as np
-from PIL import Image
 from utils.wordcloud import generate_mask, generate_cloud
 from utils.imageCoding import decodeImageToArray, encodeImageToBase64
 
@@ -32,13 +29,3 @@ def mask():
 
 if __name__ == "__main__":
     app.run(debug=True, port=3000)
-
-
-path = pathlib.Path.cwd() / 'lovecraft.txt'
-print(path)
-
-text = path.read_text()
-generate_cloud(text)
-
-mask = np.array(Image.open("mask.png").convert('RGB'))
-# generate_mask(text, mask)
