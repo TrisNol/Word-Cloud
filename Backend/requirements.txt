@@ -1,7 +1,6 @@
 wordcloud
 matplotlib
 numpy
-PIL
 flask
 flask-cors
 opencv-python
