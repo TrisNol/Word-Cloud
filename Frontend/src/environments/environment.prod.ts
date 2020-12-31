@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  basehref: 'http://localhost:3000'
+  basehref: 'https://simple-word-cloud.herokuapp.com'
 };
