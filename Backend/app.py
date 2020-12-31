@@ -1,5 +1,5 @@
-from utils.wordcloud import generate_mask, generate_cloud
-from utils.imageCoding import decodeImageToArray, encodeImageToBase64
+from .utils.wordcloud import generate_mask, generate_cloud
+from .utils.imageCoding import decodeImageToArray, encodeImageToBase64
 
 from flask import Flask, request, send_from_directory
 from flask_cors import CORS, cross_origin
