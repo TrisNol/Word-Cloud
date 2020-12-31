@@ -1,5 +1,6 @@
 # Word-Cloud
-This project was inspired by a video from Python Programmer showing how to generate Word Clouds in pyhon with minimal effort: https://www.youtube.com/watch?v=MTvHQ6YjfjE
+This project was inspired by a video from Python Programmer showing how to generate Word Clouds in pyhon with minimal effort: https://www.youtube.com/watch?v=MTvHQ6YjfjE  
+Live-Demo: https://simple-word-cloud.herokuapp.com/
 
 Adding an Angular frontend improves usability and hosting.
 
