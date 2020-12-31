@@ -1,4 +1,4 @@
-from .utils.wordcloud import generate_mask, generate_cloud
+from .utils.wordcloud_utils import generate_mask, generate_cloud
 from .utils.imageCoding import decodeImageToArray, encodeImageToBase64
 
 from flask import Flask, request, send_from_directory
@@ -36,6 +36,3 @@ def mask():
     (cloud, width, height) = generate_mask(text, mask)
     cloud = encodeImageToBase64(cloud)
     return {'cloud': cloud, 'width': width, 'height':height}
-
-if __name__ == "__main__":
-    app.run(debug=True, port=3000, host='0.0.0.0')
