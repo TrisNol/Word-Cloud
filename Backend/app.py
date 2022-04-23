@@ -36,4 +36,5 @@ def mask():
     return {'cloud': cloud, 'width': width, 'height':height}
 
 if __name__ == "__main__":
+    # TODO Read port from ENV
     app.run(host="0.0.0.0", port=3000)
