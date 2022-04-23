@@ -1,9 +1,6 @@
-import pathlib
-from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
 import numpy as np
-from PIL import Image
 from io import BytesIO
 import cv2
 
