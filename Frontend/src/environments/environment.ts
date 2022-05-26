@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  basehref: 'http://localhost:3000'
+  apiUrl: window["env"]["apiUrl"] || "default",
 };
 
 /*

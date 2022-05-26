@@ -17,9 +17,10 @@ services:
     hostname: word_cloud_frontend
     build: ./Frontend
     image: ghcr.io/trisnol/word-cloud-frontend
-
     ports:
       - 80:80
     restart: unless-stopped
+    environment:
+      - API_URL=http://localhost:3000
     depends_on:
       - backend
