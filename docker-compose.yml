@@ -6,7 +6,7 @@ services:
     container_name: word_cloud_backend
     hostname: word_cloud_backend
     build: ./Backend
-    image: ghcr.io/trisnol/word-cloud-backend
+    # image: ghcr.io/trisnol/word-cloud-backend
 
     ports:
       - 3000:3000
@@ -16,7 +16,7 @@ services:
     container_name: word_cloud_frontend
     hostname: word_cloud_frontend
     build: ./Frontend
-    image: ghcr.io/trisnol/word-cloud-frontend
+    # image: ghcr.io/trisnol/word-cloud-frontend
     ports:
       - 80:80
     restart: unless-stopped
