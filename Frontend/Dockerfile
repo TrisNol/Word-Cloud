@@ -1,7 +1,7 @@
 FROM node:18.10-alpine AS build
 WORKDIR /app
 COPY . .
-RUN npm ci && npm run build --prod
+RUN npm ci && npm run build --omit=dev
 
 FROM nginx:alpine
 COPY --from=build /app/dist/word-cloud /usr/share/nginx/html
