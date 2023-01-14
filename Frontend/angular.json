@@ -106,5 +106,7 @@
       }
     }
   },
-  "defaultProject": "word-cloud"
+  "cli": {
+    "analytics": false
+  }
 }
