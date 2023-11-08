@@ -14,9 +14,6 @@ env:
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
-    # permissions:
-    #   contents: read
-    #   packages: write
 
     steps:
       - name: Checkout repository
@@ -46,5 +43,4 @@ jobs:
         with:
           owner: ${{ github.repository_owner }}
           repository: ${{ github.event.repository.name }}
-          # token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
