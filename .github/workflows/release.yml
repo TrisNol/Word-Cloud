@@ -2,10 +2,10 @@ name: Create and publish a Docker image
 
 on:
   push:
-    branches: ['main', 'dev']
+    branches: ["main", "dev"]
     paths-ignore:
-      - 'README.md'
-      - '.gitignore'
+      - "README.md"
+      - ".gitignore"
 
 env:
   REGISTRY: ghcr.io
@@ -36,7 +36,14 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Build Docker image
-        run: docker-compose build 
+        run: docker-compose build
 
       - name: Push Docker image to ghcr.io
         run: docker-compose push
+
+      - name: Clean up old images
+        uses: trisnol/delete-untagged-images@main
+        with:
+          owner: ${{ github.repository_owner }}
+          repository: ${{ github.repository }}
+          token: ${{ secrets.GITHUB_TOKEN }}
