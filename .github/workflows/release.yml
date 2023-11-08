@@ -45,5 +45,5 @@ jobs:
         uses: trisnol/delete-untagged-images@main
         with:
           owner: ${{ github.repository_owner }}
-          repository: ${{ github.repository }}
+          repository: ${{ github.event.repository.name }}
           token: ${{ secrets.GITHUB_TOKEN }}
