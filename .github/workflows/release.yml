@@ -46,4 +46,4 @@ jobs:
         with:
           owner: ${{ github.repository_owner }}
           repository: ${{ github.event.repository.name }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
