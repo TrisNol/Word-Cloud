@@ -1,4 +1,4 @@
-FROM node:18.10-alpine AS build
+FROM node:20.11.1-alpine AS build
 WORKDIR /app
 COPY . .
 RUN npm ci && npm run build --omit=dev
