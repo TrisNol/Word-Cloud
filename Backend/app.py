@@ -1,22 +1,11 @@
 from utils.wordcloud_utils import generate_mask, generate_cloud
 from utils.imageCoding import decodeImageToArray, encodeImageToBase64
 
-from flask import Flask, request, send_from_directory
+from flask import Flask, request
 from flask_cors import CORS
 
 app = Flask(__name__)
 cors = CORS(app)
-
-@app.route('/<path:path>', methods=['GET'])
-def static_proxy(path):
-    if path.endswith(".js"): 
-        return send_from_directory('./static', path, mimetype="application/javascript")
-    return send_from_directory('./static', path)
-
-
-@app.route('/')
-def root():
-  return send_from_directory('./static', 'index.html')
 
 @app.route('/cloud', methods=['POST'])
 def cloud():
