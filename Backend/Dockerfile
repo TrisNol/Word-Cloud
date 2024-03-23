@@ -6,7 +6,7 @@ RUN apt-get update
 RUN apt-get install ffmpeg libsm6 libxext6 libgl1-mesa-glx  -y
 
 COPY requirements.txt ./
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 EXPOSE 3000
