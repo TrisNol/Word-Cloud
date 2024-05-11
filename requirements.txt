@@ -1,8 +1,0 @@
-wordcloud
-matplotlib
-numpy
-flask
-flask-cors
-opencv-python
-Pillow
-gunicorn
