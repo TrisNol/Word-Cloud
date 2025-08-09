@@ -1,36 +1,36 @@
 {
-    "build": {
-      "dockerfile": "Dockerfile"
-    },
-    "customizations": {
-      "vscode": {
-        "extensions": [
-          "MS-vsliveshare.vsliveshare",
-          "GitHub.copilot",
-          "Gruntfuggly.todo-tree",
-          "GitHub.github-vscode-theme",
-          "PKief.material-icon-theme",
-          "graphql.vscode-graphql",
-          "angular.ng-template",
-          "ms-azuretools.vscode-docker"
-        ],
-        "settings": {
-          "terminal.integrated.defaultProfile.linux": "zsh",
-          "workbench.colorTheme": "GitHub Dark Dimmed",
-          "workbench.iconTheme": "material-icon-theme"
-        }
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "MS-vsliveshare.vsliveshare",
+        "GitHub.copilot",
+        "Gruntfuggly.todo-tree",
+        "GitHub.github-vscode-theme",
+        "PKief.material-icon-theme",
+        "graphql.vscode-graphql",
+        "angular.ng-template",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "workbench.colorTheme": "GitHub Dark Dimmed",
+        "workbench.iconTheme": "material-icon-theme"
       }
-    },
-    "mounts": [
-      "source=//var/run/docker.sock,target=/var/run/docker-host.sock,type=bind",
-      "source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/Frontend/node_modules,type=volume",
-      "source=${localWorkspaceFolderBasename}-venv,target=${containerWorkspaceFolder}/Backend/venv,type=volume"
-    ],
-    "name": "devcontainer_word-cloud",
-    "runArgs": [
-      "--privileged",
-      "--network=host",
-      "--add-host=host.docker.internal:host-gateway"
-    ]
-  }
-  
+    }
+  },
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+    "source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/Frontend/node_modules,type=volume",
+    "source=${localWorkspaceFolderBasename}-venv,target=${containerWorkspaceFolder}/Backend/venv,type=volume"
+  ],
+  "name": "devcontainer_word-cloud",
+  "runArgs": [
+    "--privileged",
+    "--network=host",
+    "--add-host=host.docker.internal:host-gateway"
+  ],
+  "postStartCommand": "sudo chown -R vscode:vscode /workspaces /workspaces/Word-Cloud/Frontend/node_modules /workspaces/Word-Cloud/Backend/venv || true"
+}
