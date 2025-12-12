@@ -26,6 +26,11 @@
     "source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/Frontend/node_modules,type=volume",
     "source=${localWorkspaceFolderBasename}-venv,target=${containerWorkspaceFolder}/Backend/venv,type=volume"
   ],
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "moby": false
+    }
+  },
   "name": "devcontainer_word-cloud",
   "runArgs": [
     "--privileged",
