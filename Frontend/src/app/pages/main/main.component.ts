@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ImageService } from 'src/app/services/image.service';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+    selector: 'app-main',
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.component.scss'],
+    standalone: false
 })
 export class MainComponent implements OnInit {
   text: string = "";
