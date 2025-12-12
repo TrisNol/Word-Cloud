@@ -1,9 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-drag-and-drop',
-  templateUrl: './drag-and-drop.component.html',
-  styleUrls: ['./drag-and-drop.component.scss']
+    selector: 'app-drag-and-drop',
+    templateUrl: './drag-and-drop.component.html',
+    styleUrls: ['./drag-and-drop.component.scss'],
+    standalone: false
 })
 export class DragAndDropComponent implements OnInit {
   files: any[] = [];
