@@ -1,8 +1,8 @@
 wordcloud
 matplotlib
 numpy
-flask
-flask-cors
+fastapi
+uvicorn
 opencv-python
 Pillow
 gunicorn
