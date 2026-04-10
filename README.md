@@ -1,7 +1,7 @@
 # Word-Cloud
 This project was inspired by a video from Python Programmer showing how to generate Word Clouds in pyhon with minimal effort: https://www.youtube.com/watch?v=MTvHQ6YjfjE  
 
- [Live Demo](https://word-cloud.trisnol.dev/)
+[Live Demo](https://word-cloud.trisnol.dev/)
 
 ## Backend
 The Python based backend hosts a REST API which receives the neccessary data to create a word cloud. On the one hand an API to send a bulk of text is hosted on the other hand an extension including a 'mask' can be used.
