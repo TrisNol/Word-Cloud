@@ -1,35 +1,27 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
     selector: 'app-drag-and-drop',
     templateUrl: './drag-and-drop.component.html',
     styleUrls: ['./drag-and-drop.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false
 })
-export class DragAndDropComponent implements OnInit {
-  files: any[] = [];
-  textReader = new FileReader();
-  imageReader = new FileReader();
+  export class DragAndDropComponent {
+  files: File[] = [];
+  isDraggingFile = false;
 
   @Output() textRead: EventEmitter<string> = new EventEmitter();
-  @Output() imageRead: EventEmitter<any> = new EventEmitter();
-  constructor() {
-    this.textReader.onload = () => {
-      let text = this.textReader.result;
-      this.textRead.emit(String(text));
-    };
-    this.imageReader.onload = () => {
-      let image = this.imageReader.result;
-      this.imageRead.emit(image);
-    };
-  }
+  @Output() imageRead: EventEmitter<string> = new EventEmitter();
+  constructor() {}
 
   /**
  * format bytes
  * @param bytes (File size in bytes)
  * @param decimals (Decimals point)
  */
-  formatBytes(bytes, decimals) {
+  formatBytes(bytes: number, decimals: number): string {
     if (bytes === 0) {
       return '0 Bytes';
     }
@@ -48,30 +40,69 @@ export class DragAndDropComponent implements OnInit {
     this.files.splice(index, 1);
   }
 
-  ngOnInit(): void {
+  drop(event: CdkDragDrop<File[]>) {
+    moveItemInArray(this.files, event.previousIndex, event.currentIndex);
   }
 
-  onFileDropped($event) {
-    for (const item of $event) {
-      this.files.push(item);
-      if(item.name.endsWith('.txt')){
-        this.textReader.readAsText(item);
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    this.isDraggingFile = true;
+  }
+
+  onDragLeave(event: DragEvent) {
+    event.preventDefault();
+    this.isDraggingFile = false;
+  }
+
+  onNativeDrop(event: DragEvent) {
+    event.preventDefault();
+    this.isDraggingFile = false;
+    const droppedFiles = event.dataTransfer?.files;
+    if (!droppedFiles) {
+      return;
+    }
+    this.processFiles(droppedFiles);
+  }
+
+  fileBrowseHandler(files: FileList | null) {
+    if (!files) {
+      return;
+    }
+    this.processFiles(files);
+  }
+
+  private processFiles(files: FileList) {
+    for (let i = 0; i < files.length; i++) {
+      const file = files.item(i);
+      if (!file) {
+        continue;
       }
-      else if(item.name.endsWith('.png') || item.name.endsWith('.jpg')){
-        this.imageReader.readAsDataURL(item);
+
+      this.files.push(file);
+      const fileName = file.name.toLowerCase();
+
+      if (fileName.endsWith('.txt')) {
+        this.readTextFile(file);
+      } else if (fileName.endsWith('.png') || fileName.endsWith('.jpg') || fileName.endsWith('.jpeg')) {
+        this.readImageFile(file);
       }
     }
   }
-  fileBrowseHandler(files: FileList) {
-    for (let i = 0; i < files.length; i++) {
-      let file = files.item(i);
-      this.files.push(file);
-      if(file.name.endsWith('.txt')){
-        this.textReader.readAsText(files.item(i));
+
+  private readTextFile(file: File) {
+    const reader = new FileReader();
+    reader.onload = () => this.textRead.emit(String(reader.result ?? ''));
+    reader.readAsText(file);
+  }
+
+  private readImageFile(file: File) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result;
+      if (typeof result === 'string') {
+        this.imageRead.emit(result);
       }
-      else if(file.name.endsWith('.png') || file.name.endsWith('.jpg')){
-        this.imageReader.readAsDataURL(file);
-      }
-    }
+    };
+    reader.readAsDataURL(file);
   }
 }

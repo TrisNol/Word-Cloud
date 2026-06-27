@@ -2,9 +2,11 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const runtimeEnv = (window as Window & { env?: { apiUrl?: string } }).env;
+
 export const environment = {
   production: false,
-  apiUrl: window["env"]["apiUrl"] || "http://localhost:3000",
+  apiUrl: runtimeEnv?.apiUrl || 'http://localhost:3000',
 };
 
 /*

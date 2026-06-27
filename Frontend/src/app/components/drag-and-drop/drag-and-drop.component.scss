@@ -30,3 +30,38 @@
         color: #38424c;   
     }
 }
+
+.dropzone.fileover {
+    border-color: #db202f;
+    background-color: #fff8f8;
+}
+
+.files-list {
+    width: 450px;
+    margin: 1rem auto 0;
+}
+
+.single-file {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border: 1px solid #ececec;
+    border-radius: 8px;
+    background: #fff;
+    margin-bottom: 8px;
+    cursor: move;
+}
+
+.info {
+    flex: 1;
+}
+
+.name,
+.size {
+    margin: 0;
+}
+
+.delete {
+    cursor: pointer;
+}

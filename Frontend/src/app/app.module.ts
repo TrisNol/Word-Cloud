@@ -9,22 +9,24 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { DragAndDropComponent } from './components/drag-and-drop/drag-and-drop.component';
-import { DndDirective } from './components/drag-and-drop/dnd.directive';
 import { MatButtonModule } from '@angular/material/button';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
-@NgModule({ declarations: [
+@NgModule({
+    declarations: [
         AppComponent,
         MainComponent,
-        DragAndDropComponent,
-        DndDirective
+        DragAndDropComponent
     ],
     bootstrap: [AppComponent], imports: [BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         FormsModule,
+        DragDropModule,
         MatFormFieldModule,
         MatInputModule,
-        MatButtonModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        MatButtonModule], providers: [provideHttpClient(withXhr(), withInterceptorsFromDi())]
+})
 export class AppModule { }

@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ImageService } from 'src/app/services/image.service';
 
 @Component({
     selector: 'app-main',
     templateUrl: './main.component.html',
     styleUrls: ['./main.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MainComponent implements OnInit {
   text: string = "";
   cloudImage: any;
   mask: any;
-  width: number;
-  height: number;
+  width: number = 0;
+  height: number = 0;
   constructor(private imageService: ImageService) { }
 
   ngOnInit(): void {
