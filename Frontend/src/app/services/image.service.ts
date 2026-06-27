@@ -10,8 +10,8 @@ export class ImageService {
 
   constructor(private http: HttpClient) { }
 
-  public decodeImage(image){
-    return 'data:image/jpg;base64,' + image; 
+  public decodeImage(image: string): string {
+    return 'data:image/jpg;base64,' + image;
   }
 
   public generateCloud(text: string): Observable<any> {
