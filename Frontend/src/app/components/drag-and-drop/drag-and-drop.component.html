@@ -3,7 +3,7 @@
   (dragover)="onDragOver($event)"
   (dragleave)="onDragLeave($event)"
   (drop)="onNativeDrop($event)">
-  <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event.target.files)" />
+  <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler(fileDropRef.files)" />
   <h3>Drag and drop file here</h3>
   <h3>or</h3>
   <label for="fileDropRef">Browse for file</label>
