@@ -1,5 +1,4 @@
 services:
-
   backend:
     container_name: word_cloud_backend
     hostname: word_cloud_backend
